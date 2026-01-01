@@ -1,0 +1,7 @@
+# Basic environment for retrieval experiments
+numpy
+tqdm
+sentence-transformers
+faiss-cpu
+openai
+PyPDF2
