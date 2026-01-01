@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": 1,
+    "source": "paper_1",
+    "text": "Large language models face scalability challenges such as memory usage and compute cost."
+  },
+  {
+    "id": 2,
+    "source": "paper_2",
+    "text": "Training large models requires distributed systems and efficient parallelization."
+  }
+]
