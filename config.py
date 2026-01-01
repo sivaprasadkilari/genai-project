@@ -1,23 +1,17 @@
-"""
-Configuration for genai-project.
-Adjust paths and model names as needed.
-"""
 from pathlib import Path
 
-ROOT = Path(__file__).parent
+ROOT_DIR = Path(__file__).parent
+DATA_DIR = ROOT_DIR / "data"
+CHUNKS_PATH = DATA_DIR / "chunks.json"
 
-DATA_DIR = ROOT / "data"
-PAPERS_DIR = DATA_DIR / "papers"
-RAW_TEXT_DIR = DATA_DIR / "raw_text"
-CHUNKS_FILE = DATA_DIR / "chunks.json"
+EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+CROSS_ENCODER_MODEL_NAME = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 
-BASELINE_DIR = ROOT / "baseline"
-IMPROVED_DIR = ROOT / "improved"
-EVALUATION_DIR = ROOT / "evaluation"
+TOP_K_BASELINE = 5
+TOP_K_IMPROVED_CANDIDATES = 15
+TOP_K_IMPROVED_FINAL = 5
 
-# Embedding / model config
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # sentence-transformers
-TOP_K = 5
+BM25_WEIGHT = 0.4
+VECTOR_WEIGHT = 0.6
 
-# OpenAI (if used in improved pipeline)
-OPENAI_API_KEY = None  # set via environment variable or override at runtime
+RANDOM_SEED = 42
