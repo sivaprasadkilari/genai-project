@@ -1,55 +1,60 @@
-"""
-Baseline retrieval pipeline:
-- Loads chunked documents from data/chunks.json
-- Builds embeddings with sentence-transformers
-- Performs simple nearest-neighbor search (FAISS)
-- Returns top-k docs per query (example queries are included)
-"""
 import json
-from typing import List, Dict
-from sentence_transformers import SentenceTransformer
 import numpy as np
-import faiss
-from config import CHUNKS_FILE, EMBEDDING_MODEL, TOP_K
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+from pathlib import Path
 
-MODEL = SentenceTransformer(EMBEDDING_MODEL)
+# Load config values
+DATA_PATH = Path("data/chunks.json")
+RESULT_PATH = Path("baseline/baseline_results.json")
+
+# Load embedding model
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
 
 def load_chunks():
-    with open(CHUNKS_FILE, "r", encoding="utf-8") as f:
+    """Load document chunks from JSON file"""
+    with open(DATA_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
-def build_index(texts: List[str]):
-    embeddings = MODEL.encode(texts, show_progress_bar=True, convert_to_numpy=True)
-    dim = embeddings.shape[1]
-    index = faiss.IndexFlatIP(dim)
-    faiss.normalize_L2(embeddings)
-    index.add(embeddings)
-    return index, embeddings
 
-def run_baseline():
-    chunks = load_chunks()
-    texts = [c["text"] for c in chunks]
-    if not texts:
-        return {"error": "no chunks found in data/chunks.json"}
-    index, embeddings = build_index(texts)
+def retrieve_chunks(query, chunks, top_k=5):
+    """Retrieve top-k relevant chunks using cosine similarity"""
+    texts = [chunk["text"] for chunk in chunks]
 
-    # example queries
-    queries = [
-        "What are the main architectural changes in recent LLMs?",
-        "How to evaluate retrieval-augmented generation?"
-    ]
+    query_embedding = model.encode([query])
+    chunk_embeddings = model.encode(texts)
+
+    similarities = cosine_similarity(query_embedding, chunk_embeddings)[0]
+
+    ranked_indices = np.argsort(similarities)[::-1][:top_k]
+
     results = []
-    for q in queries:
-        q_emb = MODEL.encode([q], convert_to_numpy=True)
-        faiss.normalize_L2(q_emb)
-        D, I = index.search(q_emb, TOP_K)
-        retrieved = []
-        for score, idx in zip(D[0], I[0]):
-            retrieved.append({"score": float(score), "chunk": chunks[int(idx)]})
-        results.append({"query": q, "retrieved": retrieved})
+    for idx in ranked_indices:
+        results.append({
+            "text": texts[idx],
+            "score": float(similarities[idx])
+        })
+
     return results
 
+
+def run_baseline(query):
+    chunks = load_chunks()
+    retrieved = retrieve_chunks(query, chunks)
+
+    output = {
+        "query": query,
+        "retrieved_chunks": retrieved
+    }
+
+    with open(RESULT_PATH, "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=2)
+
+    print("✅ Baseline retrieval completed.")
+    print(f"Results saved to {RESULT_PATH}")
+
+
 if __name__ == "__main__":
-    import json
-    out = run_baseline()
-    print(json.dumps(out, indent=2))
+    sample_query = "What are the key challenges in scaling large language models?"
+    run_baseline(sample_query)
