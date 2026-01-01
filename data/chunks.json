@@ -1,12 +1,128 @@
 [
   {
-    "id": 1,
-    "source": "paper_1",
-    "text": "Large language models face scalability challenges such as memory usage and compute cost."
+    "id": "paper_1_chunk_0",
+    "paper_id": "paper_1",
+    "source": "Attention Is All You Need",
+    "section": "Introduction",
+    "text": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks. In an encoder-decoder configuration these networks use an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely."
   },
   {
-    "id": 2,
-    "source": "paper_2",
-    "text": "Training large models requires distributed systems and efficient parallelization."
+    "id": "paper_1_chunk_1",
+    "paper_id": "paper_1",
+    "source": "Attention Is All You Need",
+    "section": "Model Architecture",
+    "text": "Recurrent neural networks, long short-term memory networks and gated recurrent units in particular, have been firmly established as state of the art approaches in sequence modeling and transduction problems such as language modeling and machine translation. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely."
+  },
+  {
+    "id": "paper_2_chunk_0",
+    "paper_id": "paper_2",
+    "source": "Language Models are Unsupervised Multitask Learners",
+    "section": "Abstract",
+    "text": "Natural language processing tasks are typically approached with supervised learning on task-specific datasets. We demonstrate that language models begin to learn these tasks without any explicit supervision when trained on a new dataset of Internet text called WebText. Our largest model, which we call GPT-2, is a 1.5B parameter transformer that achieves state of the art performance on 7 out of 8 tested language modeling datasets."
+  },
+  {
+    "id": "paper_3_chunk_0",
+    "paper_id": "paper_3",
+    "source": "BERT: Pre-training of Deep Bidirectional Transformers",
+    "section": "Introduction",
+    "text": "We introduce BERT, a new method of pre-training language representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks without substantial task-specific architecture modifications."
+  },
+  {
+    "id": "paper_4_chunk_0",
+    "paper_id": "paper_4",
+    "source": "Dense Passage Retrieval for Open-Domain QA",
+    "section": "Introduction",
+    "text": "Open-domain question answering requires retrieval of relevant passages that may contain the answer, followed by machine reading comprehension. We propose Dense Passage Retrieval (DPR), which uses dense vector representations for both passages and queries to enable efficient nearest neighbor search. Unlike traditional sparse retrieval methods, DPR learns from question-passage pairs and achieves significant improvements in retrieval accuracy."
+  },
+  {
+    "id": "paper_4_chunk_1",
+    "paper_id": "paper_4",
+    "source": "Dense Passage Retrieval for Open-Domain QA",
+    "section": "Methods",
+    "text": "Our dense retriever learns representations for both queries and passages using contrastive loss. The passage encoder and query encoder are both initialized from pretrained language models. At inference, we use FAISS indexing to efficiently retrieve the top-k passages most similar to the query embedding. This dense representation learning enables the model to better capture semantic relevance compared to traditional sparse retrieval methods like BM25."
+  },
+  {
+    "id": "paper_5_chunk_0",
+    "paper_id": "paper_5",
+    "source": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+    "section": "Abstract",
+    "text": "Large language models encode substantial knowledge in their parameters, but accessing and manipulating this knowledge is still problematic. We propose Retrieval-Augmented Generation (RAG), which augments language models with a retrieval mechanism that can retrieve relevant documents to support generation. RAG combines the strengths of retrieval and generation, enabling more factually grounded and up-to-date responses."
+  },
+  {
+    "id": "paper_5_chunk_1",
+    "paper_id": "paper_5",
+    "source": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+    "section": "Key Results",
+    "text": "RAG significantly reduces hallucination in open-domain QA by retrieving relevant passages to ground the generation process. Compared to baseline language models, RAG achieves 44.5% EM on Natural Questions, improving both accuracy and factuality. The retrieval component ensures that the model can cite sources and provide grounded, verifiable answers rather than generating potentially false information."
+  },
+  {
+    "id": "paper_6_chunk_0",
+    "paper_id": "paper_6",
+    "source": "On Hallucination and Predictive Uncertainty in Conditional Language Generation",
+    "section": "Abstract",
+    "text": "Hallucination, where a language model generates factually incorrect information despite being conditioned on valid input, is a critical limitation. We provide an extensive empirical study of hallucination in conditional language generation tasks. We find that models with higher confidence often produce more hallucinations, and that explicit control over generation confidence can reduce hallucination rates without sacrificing generation quality."
+  },
+  {
+    "id": "paper_7_chunk_0",
+    "paper_id": "paper_7",
+    "source": "Measuring and Reducing Hallucination in RAG Systems",
+    "section": "Introduction",
+    "text": "Despite advances in retrieval-augmented generation, language models continue to generate hallucinated facts not present in retrieved documents. We propose metrics to measure hallucination in RAG and demonstrate that query-aware document reranking and domain-specific retrieval can significantly reduce hallucination rates. Our findings show that high-quality retrieval is critical for factual grounding."
+  },
+  {
+    "id": "paper_8_chunk_0",
+    "paper_id": "paper_8",
+    "source": "Long Document Transformers for Extended Context",
+    "section": "Methods",
+    "text": "We propose Longformer, which combines local and global attention patterns to efficiently process long documents up to 4096 tokens, compared to 512 tokens for BERT. By using sparse attention patterns and hierarchical attention mechanisms, Longformer can capture both fine-grained local context and broad document-level structure while maintaining computational efficiency."
+  },
+  {
+    "id": "paper_9_chunk_0",
+    "paper_id": "paper_9",
+    "source": "Scaling Laws for Neural Language Models",
+    "section": "Key Findings",
+    "text": "We investigate how language model performance varies with model size and training data. Our analysis reveals smooth scaling laws: loss decreases smoothly with model scale, data scale, and compute budget. These scaling relationships enable us to predict the performance of larger models and optimize allocation of computational resources. Larger models generally perform better at downstream tasks including hallucination reduction."
+  },
+  {
+    "id": "paper_10_chunk_0",
+    "paper_id": "paper_10",
+    "source": "Instructional Fine-Tuning for Robust Language Models",
+    "section": "Results",
+    "text": "We fine-tune language models on diverse instruction-following tasks to improve robustness and reduce factual errors. Instruction-tuned models show improved performance on zero-shot and few-shot tasks while maintaining better factual grounding. This approach complements retrieval-based methods and contributes to more reliable language model outputs across diverse domains."
+  },
+  {
+    "id": "paper_2_chunk_1",
+    "paper_id": "paper_2",
+    "source": "Language Models are Unsupervised Multitask Learners",
+    "section": "Data and Pretraining",
+    "text": "We introduced WebText, a corpus of 40GB of text scraped from the Internet. The dataset emphasizes document quality using the heuristic of links referenced by outbound links from Reddit. Our experiments demonstrate that large-scale pretraining on diverse and high-quality text is crucial for developing language models with good generalization and reduced tendency to hallucinate on unseen tasks."
+  },
+  {
+    "id": "paper_3_chunk_1",
+    "paper_id": "paper_3",
+    "source": "BERT: Pre-training of Deep Bidirectional Transformers",
+    "section": "Experimental Results",
+    "text": "BERT achieves state-of-the-art results on the GLUE benchmark and SQuAD question answering dataset. The bidirectional pretraining approach enables BERT to understand context from both directions, leading to more accurate representations. These improvements extend to knowledge-intensive tasks where contextual understanding is essential for factually correct predictions."
+  },
+  {
+    "id": "paper_6_chunk_1",
+    "paper_id": "paper_6",
+    "source": "On Hallucination and Predictive Uncertainty in Conditional Language Generation",
+    "section": "Methods",
+    "text": "We analyze hallucination through the lens of model uncertainty and confidence calibration. High confidence predictions that contradict the input often indicate hallucinations. We propose uncertainty-aware decoding strategies that regulate generation confidence to reduce hallucinations while preserving generation quality. These methods provide a pathway for reducing factually incorrect outputs."
+  },
+  {
+    "id": "paper_8_chunk_1",
+    "paper_id": "paper_8",
+    "source": "Long Document Transformers for Extended Context",
+    "section": "Applications",
+    "text": "Extended context models enable new applications including long-form document understanding, abstractive summarization of long documents, and retrieval-augmented generation with larger document context. By processing longer input sequences, these models can maintain coherent reasoning across multiple paragraphs and reduce hallucinations due to insufficient context."
+  },
+  {
+    "id": "paper_10_chunk_1",
+    "paper_id": "paper_10",
+    "source": "Instructional Fine-Tuning for Robust Language Models",
+    "section": "Methods",
+    "text": "We collect diverse instruction-following examples across 1000+ tasks and fine-tune the model to follow instructions accurately. This instruction-tuning approach teaches models to be more careful about uncertainty and to refuse to answer questions they cannot answer based on their knowledge. Combined with retrieval augmentation, instruction-tuned models achieve significantly reduced hallucination rates."
   }
 ]
