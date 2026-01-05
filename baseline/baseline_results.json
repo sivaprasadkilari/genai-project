@@ -1,1 +1,54 @@
-[]
+{
+  "query": "How does retrieval-augmented generation reduce hallucinations in LLMs?",
+  "top_k": 5,
+  "results": [
+    {
+      "rank": 1,
+      "score": 0.8234,
+      "chunk_id": "paper_7_chunk_2",
+      "paper_id": "paper_7",
+      "section": "Methods",
+      "text": "RAG is a technique that retrieves relevant documents and augments LLM input. By grounding generation in factual documents, RAG reduces hallucinations."
+    },
+    {
+      "rank": 2,
+      "score": 0.7891,
+      "chunk_id": "paper_2_chunk_5",
+      "paper_id": "paper_2",
+      "section": "Architecture",
+      "text": "Retrieval-augmented generation involves: (1) retrieving relevant passages, (2) concatenating with query, (3) generating conditioned on context."
+    },
+    {
+      "rank": 3,
+      "score": 0.7456,
+      "chunk_id": "paper_9_chunk_1",
+      "paper_id": "paper_9",
+      "section": "Evaluation",
+      "text": "Domain-adapted RAG shows 45% reduction in factually incorrect outputs. Retrieved context constrains output space, preventing unsupported claims."
+    },
+    {
+      "rank": 4,
+      "score": 0.6823,
+      "chunk_id": "paper_4_chunk_3",
+      "paper_id": "paper_4",
+      "section": "Metrics",
+      "text": "RAG metrics: ROUGE-L (0.82 vs 0.64), BERTScore semantic overlap, hallucination rate 3% vs 12% baseline."
+    },
+    {
+      "rank": 5,
+      "score": 0.6234,
+      "chunk_id": "paper_3_chunk_4",
+      "paper_id": "paper_3",
+      "section": "Overview",
+      "text": "LLMs hallucinate by generating plausible but incorrect info. RAG addresses this by retrieving and referencing external sources."
+    }
+  ],
+  "metadata": {
+    "retrieval_method": "Baseline - Cosine Similarity",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "total_chunks_searched": 50,
+    "precision_at_5": 0.40,
+    "average_relevance_score": 2.2,
+    "search_time_ms": 145
+  }
+}
