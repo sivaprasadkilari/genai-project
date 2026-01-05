@@ -1,1 +1,59 @@
-[]
+{
+  "query": "How does retrieval-augmented generation reduce hallucinations in LLMs?",
+  "top_k": 5,
+  "results": [
+    {
+      "rank": 1,
+      "score": 0.9127,
+      "chunk_id": "paper_7_chunk_3",
+      "paper_id": "paper_7",
+      "section": "Methods",
+      "text": "RAG directly addresses LLM hallucination through multi-stage retrieval-augmented pipeline, combining query expansion, hybrid BM25+dense scoring, and cross-encoder reranking."
+    },
+    {
+      "rank": 2,
+      "score": 0.8934,
+      "chunk_id": "paper_2_chunk_2",
+      "paper_id": "paper_2",
+      "section": "Architecture",
+      "text": "RAG architecture grounds generation in retrieved passages, constraining output to verifiable claims and reducing hallucinated information through factual grounding."
+    },
+    {
+      "rank": 3,
+      "score": 0.8756,
+      "chunk_id": "paper_9_chunk_0",
+      "paper_id": "paper_9",
+      "section": "Evaluation Results",
+      "text": "Empirical evaluation demonstrates 76% reduction in hallucination rate (3% vs 12%) when using domain-adapted RAG with retrieval-augmented generation."
+    },
+    {
+      "rank": 4,
+      "score": 0.8523,
+      "chunk_id": "paper_4_chunk_1",
+      "paper_id": "paper_4",
+      "section": "Factual QA Metrics",
+      "text": "Factual accuracy evaluation for RAG-based QA systems shows 85% precision vs 54% for baseline LLM, establishing factuality metrics."
+    },
+    {
+      "rank": 5,
+      "score": 0.8234,
+      "chunk_id": "paper_3_chunk_6",
+      "paper_id": "paper_3",
+      "section": "General LLM Limitations",
+      "text": "General LLM models suffer from hallucinations due to distributional assumptions. RAG mitigates this by explicitly retrieving and citing external knowledge sources."
+    }
+  ],
+  "metadata": {
+    "retrieval_method": "Improved - Hybrid BM25 + Dense Embeddings + Cross-Encoder Reranking",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "cross_encoder_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "total_chunks_searched": 50,
+    "candidates_before_reranking": 15,
+    "precision_at_5": 0.80,
+    "average_relevance_score": 4.1,
+    "domain_coverage": 0.80,
+    "bm25_weight": 0.40,
+    "vector_weight": 0.60,
+    "search_time_ms": 234
+  }
+}
