@@ -1,1 +1,46 @@
-[]
+{
+  "query": "How does retrieval-augmented generation reduce hallucinations in LLMs?",
+  "top_k": 5,
+  "results": [
+    {
+      "rank": 1,
+      "score": 0.5671051740646362,
+      "chunk_id": "paper_6_chunk_1",
+      "paper_id": "paper_6",
+      "section": "Methods",
+      "text": "We analyze hallucination through the lens of model uncertainty and confidence calibration. High confidence predictions that contradict the input often indicate hallucinations. We propose uncertainty-aware decoding strategies that regulate generation confidence to reduce hallucinations while preserving generation quality. These methods provide a pathway for reducing factually incorrect outputs."
+    },
+    {
+      "rank": 2,
+      "score": 0.5227210521697998,
+      "chunk_id": "paper_6_chunk_0",
+      "paper_id": "paper_6",
+      "section": "Abstract",
+      "text": "Hallucination, where a language model generates factually incorrect information despite being conditioned on valid input, is a critical limitation. We provide an extensive empirical study of hallucination in conditional language generation tasks. We find that models with higher confidence often produce more hallucinations, and that explicit control over generation confidence can reduce hallucination rates without sacrificing generation quality."
+    },
+    {
+      "rank": 3,
+      "score": 0.42640963196754456,
+      "chunk_id": "paper_7_chunk_0",
+      "paper_id": "paper_7",
+      "section": "Introduction",
+      "text": "Despite advances in retrieval-augmented generation, language models continue to generate hallucinated facts not present in retrieved documents. We propose metrics to measure hallucination in RAG and demonstrate that query-aware document reranking and domain-specific retrieval can significantly reduce hallucination rates. Our findings show that high-quality retrieval is critical for factual grounding."
+    },
+    {
+      "rank": 4,
+      "score": 0.3695005476474762,
+      "chunk_id": "paper_10_chunk_1",
+      "paper_id": "paper_10",
+      "section": "Methods",
+      "text": "We collect diverse instruction-following examples across 1000+ tasks and fine-tune the model to follow instructions accurately. This instruction-tuning approach teaches models to be more careful about uncertainty and to refuse to answer questions they cannot answer based on their knowledge. Combined with retrieval augmentation, instruction-tuned models achieve significantly reduced hallucination rates."
+    },
+    {
+      "rank": 5,
+      "score": 0.3202120065689087,
+      "chunk_id": "paper_5_chunk_1",
+      "paper_id": "paper_5",
+      "section": "Key Results",
+      "text": "RAG significantly reduces hallucination in open-domain QA by retrieving relevant passages to ground the generation process. Compared to baseline language models, RAG achieves 44.5% EM on Natural Questions, improving both accuracy and factuality. The retrieval component ensures that the model can cite sources and provide grounded, verifiable answers rather than generating potentially false information."
+    }
+  ]
+}
