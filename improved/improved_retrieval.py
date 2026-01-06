@@ -22,6 +22,7 @@ class ImprovedRetriever:
     Improved retriever:
     - Query expansion
     - Hybrid BM25 + dense retrieval
+    - Section-aware boosting
     - Cross-encoder reranking
     """
 
@@ -67,6 +68,22 @@ class ImprovedRetriever:
 
         return " ".join(parts)
 
+    @staticmethod
+    def _section_boost(section: str | None) -> float:
+        """
+        Apply a modest boost to methods/results sections to emphasize evidence-rich
+        passages and to abstract/intro for quick grounding. Keeps logic simple but
+        makes retrieval more enterprise-aligned (prefers factual sections).
+        """
+        if not section:
+            return 1.0
+        sec = section.lower()
+        if "method" in sec or "result" in sec or "experiment" in sec:
+            return 1.1
+        if "abstract" in sec or "introduction" in sec:
+            return 1.05
+        return 1.0
+
     def retrieve(self, query: str) -> List[Dict[str, Any]]:
         expanded_query = self._expand_query(query)
 
@@ -86,6 +103,10 @@ class ImprovedRetriever:
         bm25_n = norm(bm25_scores)
         dense_n = norm(dense_scores)
         hybrid = BM25_WEIGHT * bm25_n + VECTOR_WEIGHT * dense_n
+
+        # Section-aware boost to encourage evidence-heavy sections
+        for i, chunk in enumerate(self.chunks):
+            hybrid[i] *= self._section_boost(chunk.get("section"))
 
         # Candidate set
         cand_idx = np.argsort(-hybrid)[:TOP_K_IMPROVED_CANDIDATES]
@@ -113,10 +134,24 @@ class ImprovedRetriever:
         return results
 
 
-def run_improved(query: str, output_path: Path) -> None:
+def run_improved(query: str, output_path: Path) -> Dict[str, Any]:
+    """
+    Run the improved multi-stage retrieval pipeline and persist outputs.
+    Returns the payload so downstream steps (evaluation/generation) can reuse it.
+    """
     retriever = ImprovedRetriever()
     results = retriever.retrieve(query)
-    payload = {"query": query, "top_k": len(results), "results": results}
+    payload = {
+        "query": query,
+        "strategy": "improved_hybrid_bm25_dense_rerank",
+        "top_k": len(results),
+        "results": results,
+        "notes": (
+            "Hybrid BM25+dense with query expansion, section-aware boosting, "
+            "and cross-encoder reranking."
+        ),
+    }
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2)
+    return payload

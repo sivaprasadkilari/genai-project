@@ -14,6 +14,7 @@ class BaselineRetriever:
     - SentenceTransformer embeddings
     - Cosine similarity
     - Top-k selection
+    - Serves as the control arm for evaluation
     """
 
     def __init__(self, chunks_path: Path = CHUNKS_PATH):
@@ -50,10 +51,22 @@ class BaselineRetriever:
         return results
 
 
-def run_baseline(query: str, output_path: Path) -> None:
+def run_baseline(query: str, output_path: Path) -> Dict[str, Any]:
+    """
+    Run the baseline retrieval and persist outputs for evaluation and comparison.
+    Returns the payload so downstream steps (evaluation/generation) do not need
+    to re-read from disk.
+    """
     retriever = BaselineRetriever()
     results = retriever.retrieve(query)
-    payload = {"query": query, "top_k": len(results), "results": results}
+    payload = {
+        "query": query,
+        "strategy": "baseline_dense_cosine",
+        "top_k": len(results),
+        "results": results,
+        "notes": "Pure dense cosine similarity without query expansion, sparse signals, or reranking.",
+    }
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2)
+    return payload

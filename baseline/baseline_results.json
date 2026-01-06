@@ -1,5 +1,6 @@
 {
   "query": "How does retrieval-augmented generation reduce hallucinations in LLMs?",
+  "strategy": "baseline_dense_cosine",
   "top_k": 5,
   "results": [
     {
@@ -42,5 +43,6 @@
       "section": "Key Results",
       "text": "RAG significantly reduces hallucination in open-domain QA by retrieving relevant passages to ground the generation process. Compared to baseline language models, RAG achieves 44.5% EM on Natural Questions, improving both accuracy and factuality. The retrieval component ensures that the model can cite sources and provide grounded, verifiable answers rather than generating potentially false information."
     }
-  ]
+  ],
+  "notes": "Pure dense cosine similarity without query expansion, sparse signals, or reranking."
 }
