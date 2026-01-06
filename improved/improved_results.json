@@ -1,10 +1,11 @@
 {
   "query": "How does retrieval-augmented generation reduce hallucinations in LLMs?",
+  "strategy": "improved_hybrid_bm25_dense_rerank",
   "top_k": 5,
   "results": [
     {
       "rank": 1,
-      "hybrid_score": 1.0000000238418578,
+      "hybrid_score": 1.0500000250339507,
       "cross_encoder_score": 6.200403213500977,
       "chunk_id": "paper_7_chunk_0",
       "paper_id": "paper_7",
@@ -22,7 +23,7 @@
     },
     {
       "rank": 3,
-      "hybrid_score": 0.5902679971762634,
+      "hybrid_score": 0.6492947968938898,
       "cross_encoder_score": 4.115836143493652,
       "chunk_id": "paper_5_chunk_1",
       "paper_id": "paper_5",
@@ -31,7 +32,7 @@
     },
     {
       "rank": 4,
-      "hybrid_score": 0.48237665137400515,
+      "hybrid_score": 0.5306143165114057,
       "cross_encoder_score": 2.8131332397460938,
       "chunk_id": "paper_10_chunk_1",
       "paper_id": "paper_10",
@@ -40,12 +41,13 @@
     },
     {
       "rank": 5,
-      "hybrid_score": 0.8361369352491091,
+      "hybrid_score": 0.9197506287740201,
       "cross_encoder_score": 0.59894198179245,
       "chunk_id": "paper_6_chunk_1",
       "paper_id": "paper_6",
       "section": "Methods",
       "text": "We analyze hallucination through the lens of model uncertainty and confidence calibration. High confidence predictions that contradict the input often indicate hallucinations. We propose uncertainty-aware decoding strategies that regulate generation confidence to reduce hallucinations while preserving generation quality. These methods provide a pathway for reducing factually incorrect outputs."
     }
-  ]
+  ],
+  "notes": "Hybrid BM25+dense with query expansion, section-aware boosting, and cross-encoder reranking."
 }
